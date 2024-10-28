@@ -1,10 +1,7 @@
 import { Button } from "@/components/ui/button";
-import initialProfile from "@/lib/initial-profile";
 import { SignInButton } from "@clerk/nextjs";
 
 export default async function Home() {
-  // const profile = await initialProfile();
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col items-center justify-center text-white">
       <h1 className="text-5xl font-bold mb-6">Cloud IDE</h1>

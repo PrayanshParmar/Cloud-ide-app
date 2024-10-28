@@ -1,6 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-
-import { db } from "@/lib/db";
+import { findUserById, findUserByUserId } from "./db-query";
 
 export const currentProfile = async () => {
   const { userId } = await auth();
@@ -9,11 +8,7 @@ export const currentProfile = async () => {
     return null;
   }
 
-  const profile = await db.user.findUnique({
-    where: {
-      userId,
-    },
-  });
+  const profile = await findUserByUserId(userId);
 
   return profile;
 };
