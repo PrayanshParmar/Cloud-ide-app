@@ -16,7 +16,7 @@ datasource db {
 model User {
   id              String      @id @default(uuid())
   userId          String      @unique @map("user_id")
-  name            String
+  name            String      @unique
   imageUrl        String      @db.Text
   email           String      @db.Text
   installationId  Int?        
@@ -29,14 +29,13 @@ model User {
 model AccessToken {
   id              Int         @id @default(autoincrement())
   token           String
-  installationId  Int
   userId          String      @map("user_id")
   user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   expiresAt       DateTime
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
-  @@unique([installationId, userId]) // Ensures unique installation per user
+  @@unique([userId]) // Ensures unique installation per user
 }
 
 model Project {

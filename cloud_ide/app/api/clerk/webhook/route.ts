@@ -1,8 +1,14 @@
-import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import {
+  createUser,
+  deleteUserByUserId,
+  findUserByUserId,
+} from "@/lib/db-query";
+import { generateGithubToken } from "@/lib/tokens";
+import { deleteGithuInstallationApp } from "@/lib/github-query/github";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -60,22 +66,29 @@ export async function POST(req: Request) {
       );
     }
 
-    await db.user.create({
-      data: {
-        name: data.username,
-        userId: data.id,
-        imageUrl: data.image_url,
-        email: data.email_addresses[0].email_address,
-      },
-    });
+    await createUser(
+      data.username,
+      data.id,
+      data.image_url,
+      data.email_addresses[0].email_address
+    );
 
     return NextResponse.json({ message: "User Created" }, { status: 200 });
-  } else if (evt.type === "user.deleted") {
-    await db.user.delete({
-      where: {
-        userId: evt.data.id,
-      },
-    });
+  } else if (evt.type === "user.deleted" && evt.data.id) {
+    const user = await findUserByUserId(evt.data.id);
+
+    if (!user?.installationId) {
+      await deleteUserByUserId(evt.data.id);
+      console.log("No installtion id found");
+      return NextResponse.json(
+        { message: "No installtion id found" },
+        { status: 400 }
+      );
+    }
+    const token = generateGithubToken();
+    await deleteGithuInstallationApp(user?.installationId, token);
+    await deleteUserByUserId(evt.data.id);
+
     return new Response("User Deleted", { status: 200 });
   }
 }
