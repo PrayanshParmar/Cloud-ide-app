@@ -5,8 +5,8 @@ import { Server as socketServer } from "socket.io";
 const app = express();
 const server = http.createServer(app);
 const io = new socketServer({
-    cors: '*'
-})
+  cors: "*",
+});
 
 io.attach(server);
 
