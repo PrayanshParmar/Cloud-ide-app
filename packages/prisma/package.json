@@ -11,12 +11,9 @@
         "db:push": "prisma db push",
         "db:pull": "prisma db pull",
         "db:seed": "tsx src/seed.ts",
-        "format": "prisma format",
-        "generate": "prisma generate",
-        "lint": "eslint . --max-warnings 0",
-        "prebuild": "npm run generate",
-        "predev": "npm run generate",
-        "studio": "prisma studio"
+        "db:generate": "prisma generate",
+        "db:studio": "prisma studio",
+        "db:format": "prisma format"
     },
     "dependencies": {
         "@prisma/client": "^5.22.0"
