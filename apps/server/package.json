@@ -1,0 +1,22 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "private": "true",
+    "scripts": {
+        "build": "tsc -p .",
+        "start": "node dist/index",
+        "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\""
+    },
+    "devDependencies": {
+        "@repo/typescript-config": "*",
+        "@types/express": "^5.0.0",
+        "eslint": "^9.14.0",
+        "tsc-watch": "^6.2.0",
+        "typescript": "^5.6.3"
+    },
+    "dependencies": {
+        "express": "^4.21.1",
+        "socket.io": "^4.8.1"
+    }
+}
