@@ -59,7 +59,8 @@
     },
     "db:push": {
       "cache": false
-    }
+    },
+    "db:seed": {}
   },
   "globalDependencies": [
     "yarn.lock"
