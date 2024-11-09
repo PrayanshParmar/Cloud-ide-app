@@ -60,7 +60,7 @@
     "db:push": {
       "cache": false
     },
-    "db:seed": {}
+    "db:studio": {}
   },
   "globalDependencies": [
     "yarn.lock"
