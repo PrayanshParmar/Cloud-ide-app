@@ -1,5 +1,4 @@
 // app/api/github/access-token/route.ts
-import axios from "axios";
 import { NextResponse } from "next/server";
 import { generateGithubToken } from "@/lib/tokens";
 import { currentProfile } from "@/lib/current-profile";

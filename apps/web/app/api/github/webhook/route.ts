@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import { db } from "@/lib/db";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { findFirstUserByName, updatedInstallationId } from "@/lib/db-query";

@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { findUserById, findUserByUserId } from "./db-query";
+import { findUserByUserId } from "./db-query";
 
 export const currentProfile = async () => {
   const { userId } = await auth();
