@@ -15,6 +15,18 @@
         "dist/**/*",
         ".next/**",
         "!.next/cache/**"
+      ],
+      "env": [
+        "GITHUB_APP_NAME",
+        "AUTH_GITHUB_ID",
+        "AUTH_GITHUB_SECRET",
+        "GITHUB_PRIVATE_KEY_FILE_NAME",
+        "GITHUB_WEBHOOK_SECRET",
+        "CLERK_SECRET_KEY",
+        "CLERK_WEBHOOK_SECRET",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+        "NEXT_PUBLIC_CLERK_SIGN_IN_URL",
+        "NEXT_PUBLIC_CLERK_SIGN_UP_URL"
       ]
     },
     "lint": {
@@ -26,11 +38,35 @@
       "dependsOn": [
         "^db:generate"
       ],
+      "env": [
+        "GITHUB_APP_NAME",
+        "AUTH_GITHUB_ID",
+        "AUTH_GITHUB_SECRET",
+        "GITHUB_PRIVATE_KEY_FILE_NAME",
+        "GITHUB_WEBHOOK_SECRET",
+        "CLERK_SECRET_KEY",
+        "CLERK_WEBHOOK_SECRET",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+        "NEXT_PUBLIC_CLERK_SIGN_IN_URL",
+        "NEXT_PUBLIC_CLERK_SIGN_UP_URL"
+      ],
       "cache": false,
       "persistent": true
     },
+    "db:migrate:dev": {},
     "db:generate": {
       "cache": false
+    },
+    "db:push": {
+      "cache": false
     }
-  }
+  },
+  "globalDependencies": [
+    "yarn.lock"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "DATABASE_URL",
+    "DIRECT_URL"
+  ]
 }

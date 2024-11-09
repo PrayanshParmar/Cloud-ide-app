@@ -5,8 +5,7 @@
     "scripts": {
         "build": "tsc -p .",
         "start": "node dist/index",
-        "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
-        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\""
+        "dev": "tsc-watch --onSuccess \"node dist/index.js\""
     },
     "devDependencies": {
         "@repo/typescript-config": "*",

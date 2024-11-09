@@ -14,7 +14,7 @@ const Page = () => {
   };
 
   const handleAccessToken = async () => {
-    const response = await fetch("/api/github/access-token");
+    return await fetch("/api/github/access-token");
   };
 
   return (
