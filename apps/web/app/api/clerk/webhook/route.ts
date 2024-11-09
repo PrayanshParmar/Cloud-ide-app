@@ -66,12 +66,13 @@ export async function POST(req: Request) {
       );
     }
 
-    await createUser(
-      data.username,
-      data.id,
-      data.image_url,
-      data.email_addresses[0].email_address
-    );
+    const email = data.email_addresses[0]?.email_address;
+
+    if (email === undefined) {
+      return NextResponse.json({ message: "No email found" }, { status: 400 });
+    }
+
+    await createUser(data.username, data.id, data.image_url, email);
 
     return NextResponse.json({ message: "User Created" }, { status: 200 });
   } else if (evt.type === "user.deleted" && evt.data.id) {
