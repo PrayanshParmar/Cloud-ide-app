@@ -27,8 +27,6 @@ export async function GET() {
       );
     }
     const token = generateGithubToken();
-    console.log(currentUser.installationId);
-    console.log(token);
 
     const response = await generateGithubAccessToken(
       currentUser.installationId,
