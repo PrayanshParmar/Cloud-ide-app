@@ -31,6 +31,19 @@ export async function getAccessTokenByUserId(userId: string) {
   return res;
 }
 
+export async function getAccessTokenByUserIdOnlyToken(userId: string) {
+  const res = await db.accessToken.findUnique({
+    where: {
+      userId,
+    },
+    select: {
+      token: true,
+    },
+  });
+
+  return res;
+}
+
 // Delete
 export async function deleteAccessTokenByUserId(userId: string) {
   const res = await db.accessToken.delete({

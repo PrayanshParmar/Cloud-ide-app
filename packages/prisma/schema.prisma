@@ -34,9 +34,10 @@ model AccessToken {
 model Project {
   id        String   @id @default(uuid())
   name      String
-  repo_name String
+  repoName  String   @map("repo_name")
   gitUrl    String   @map("git_url")
   userId    String   @map("user_id")
+  privateRepo   Boolean @map("private_repo")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)

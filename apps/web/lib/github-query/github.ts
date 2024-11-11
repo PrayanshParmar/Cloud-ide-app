@@ -1,5 +1,6 @@
 import axios from "axios";
 import { githubInstallationInterface } from "@/lib/types";
+
 export async function GithubInstallation(token: string) {
   try {
     const response: githubInstallationInterface = await axios.get(
@@ -84,6 +85,24 @@ export async function generateGithubAccessToken(
     return response.data;
   } catch (error: any) {
     console.error("Failed to generate accessToken:", error.message);
+    throw error;
+  }
+}
+
+export async function getUserRepos(accessToken: string) {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/installation/repositories`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          Accept: "application/vnd.github.v3+json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error: any) {
+    console.error("Failed to get user repos:", error.message);
     throw error;
   }
 }

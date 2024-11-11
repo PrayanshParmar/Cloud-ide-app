@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "@/components/custome-ui/navbar";
+import { ThemeProvider } from "@/components/provider/theme-provider";
+import { ModelProvider } from "@/components/provider/modal-provider";
+import { QueryProvider } from "@/components/provider/query-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,12 +30,23 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-900 text-white`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
         >
-          <Navbar />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            storageKey="ide-theme"
+            disableTransitionOnChange
+          >
+            <QueryProvider>
+              <ModelProvider />
+              <Navbar />
+              {children}
+            </QueryProvider>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
