@@ -10,7 +10,7 @@ export async function GET() {
     const currentUser = await currentProfile();
 
     if (!currentUser) {
-      return NextResponse.json({ error: "User not found" }, { status: 400 });
+      return NextResponse.json({ error: "User not found" }, { status: 401 });
     }
     if (!currentUser.installationId) {
       return NextResponse.json(
@@ -21,10 +21,7 @@ export async function GET() {
     const checkExistingToken = await getAccessToken(currentUser.id);
 
     if (checkExistingToken) {
-      return NextResponse.json(
-        { message: "Token already existed" },
-        { status: 400 }
-      );
+      return NextResponse.json({ token: checkExistingToken }, { status: 200 });
     }
     const token = generateGithubToken();
 
@@ -33,14 +30,10 @@ export async function GET() {
       token
     );
 
-    console.log("user", currentUser);
     if (response.token && currentUser.userId) {
-      setAccessToken(response.token, currentUser.id);
+      const newToken = await setAccessToken(response.token, currentUser.id);
 
-      return NextResponse.json(
-        { message: "Access token created" },
-        { status: 200 }
-      );
+      return NextResponse.json({ token: newToken }, { status: 200 });
     }
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

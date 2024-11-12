@@ -67,6 +67,8 @@ export async function deleteGithuInstallationApp(
   }
 }
 
+/// Access token
+
 export async function generateGithubAccessToken(
   installationId: number,
   token: string
@@ -88,6 +90,8 @@ export async function generateGithubAccessToken(
     throw error;
   }
 }
+
+/// User
 
 export async function getUserRepos(accessToken: string) {
   try {
