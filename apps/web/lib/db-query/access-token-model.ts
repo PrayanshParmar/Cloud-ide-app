@@ -44,6 +44,26 @@ export async function getAccessTokenByUserIdOnlyToken(userId: string) {
   return res;
 }
 
+// Update
+
+export async function updateAccessToken(
+  userId: string,
+  token: string,
+  expiresAt: Date
+) {
+  const res = await db.accessToken.update({
+    where: {
+      userId,
+    },
+    data: {
+      token,
+      expiresAt,
+    },
+  });
+
+  return res;
+}
+
 // Delete
 export async function deleteAccessTokenByUserId(userId: string) {
   const res = await db.accessToken.delete({
