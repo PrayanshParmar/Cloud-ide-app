@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentProfile } from "@/lib/current-profile";
 import { getUserRepos } from "@/lib/github-query/github";
-import { getAccessTokenByUserIdOnlyToken } from "@/lib/db-query";
-import { getAccessToken, validateAccessToken } from "@/lib/access-token";
+import { validateAccessToken } from "@/lib/access-token";
 
 export async function GET() {
   try {
