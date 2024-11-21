@@ -1,13 +1,19 @@
+// import Dashboard from "@/components/dashboard/dashboard";
+import Project from "@/components/project/project";
 import { currentProfile } from "@/lib/current-profile";
 
 import { RedirectToSignUp } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
 const Page = async () => {
   const user = await currentProfile();
   if (!user) {
     return <RedirectToSignUp></RedirectToSignUp>;
   }
-  return redirect("/dashboard/projects");
+  return (
+    <>
+      {/* <Dashboard user={user}></Dashboard> */}
+      <Project profile={user} />
+    </>
+  );
 };
 
 export default Page;

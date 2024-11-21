@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { DeleteMessageModal } from "../modals/delete-message-modal";
-import { AddProjectModal } from "../modals/add-project-modal";
+import { DeleteMessageModal } from "@/components/modals/delete-message-modal";
+import { ImportProjectModal } from "@/components/modals/import-project-modal";
+import { CreateProject } from "@/components/modals/create-project";
 
 export const ModelProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -17,7 +18,8 @@ export const ModelProvider = () => {
   return (
     <>
       <DeleteMessageModal></DeleteMessageModal>
-      <AddProjectModal></AddProjectModal>
+      <ImportProjectModal></ImportProjectModal>
+      <CreateProject></CreateProject>
     </>
   );
 };

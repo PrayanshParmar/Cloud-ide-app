@@ -33,9 +33,9 @@ model AccessToken {
 
 model Project {
   id        String   @id @default(uuid())
-  name      String
-  repoName  String   @map("repo_name")
-  gitUrl    String   @map("git_url")
+  name      String   @unique
+  repoName  String   @unique  @map("repo_name")
+  gitUrl    String   @unique @map("git_url")
   userId    String   @map("user_id")
   privateRepo   Boolean @map("private_repo")
   createdAt DateTime @default(now())
