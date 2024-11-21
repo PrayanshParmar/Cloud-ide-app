@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Navbar } from "@/components/custome-ui/navbar";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { ModelProvider } from "@/components/provider/modal-provider";
 import { QueryProvider } from "@/components/provider/query-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -43,8 +43,8 @@ export default function RootLayout({
           >
             <QueryProvider>
               <ModelProvider />
-              <Navbar />
               {children}
+              <Toaster />
             </QueryProvider>
           </ThemeProvider>
         </body>

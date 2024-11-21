@@ -2,7 +2,8 @@ import { User } from "@repo/prisma";
 import { create } from "zustand";
 
 export type ModalType =
-  | "addProject"
+  | "importProject"
+  | "createProject"
   | "createServer"
   | "invite"
   | "editServer"

@@ -12,6 +12,7 @@ import {
 import { Code, Menu, X, SlashIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
+import { ModeToggle } from "@/lib/mode-toggle";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,7 +56,7 @@ export function Navbar() {
   const breadcrumbs = getBreadcrumbs();
 
   return (
-    <nav className=" border-b border-[#2e2e2e]">
+    <nav className=" border-b ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
@@ -67,10 +68,7 @@ export function Navbar() {
                 {breadcrumbs.map((breadcrumb, index) => (
                   <React.Fragment key={breadcrumb.href}>
                     <BreadcrumbItem>
-                      <BreadcrumbLink
-                        href={breadcrumb.href}
-                        className="text-gray-300 hover:text-white"
-                      >
+                      <BreadcrumbLink href={breadcrumb.href} className="">
                         {breadcrumb.name}
                       </BreadcrumbLink>
                     </BreadcrumbItem>
@@ -86,10 +84,10 @@ export function Navbar() {
             </Breadcrumb>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4 ">
+          <div className="hidden md:flex items-center space-x-4">
             <Link
               href="/dashboard"
-              className=" py-2 px-1 rounded-md text-sm font-medium hover:bg-gray-700"
+              className=" py-2 px-1 rounded-md text-sm font-medium hover:text-neutral-200"
             >
               Dashboard
             </Link>
@@ -99,7 +97,7 @@ export function Navbar() {
             >
               Pricing
             </Link>
-
+            <ModeToggle />
             <UserButton />
           </div>
           <div className="md:hidden">

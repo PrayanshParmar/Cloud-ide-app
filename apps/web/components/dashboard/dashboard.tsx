@@ -11,7 +11,7 @@ const Dashboard = ({ user }: DashboardProps) => {
   const { onOpen } = useModal();
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <Button onClick={() => onOpen("addProject", { user })} variant="green">
+      <Button onClick={() => onOpen("importProject", { user })} variant="green">
         Add project
       </Button>
     </div>

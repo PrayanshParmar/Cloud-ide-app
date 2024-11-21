@@ -1,6 +1,6 @@
 import { db } from "../db";
 
-export async function createProject(
+export async function importProject(
   userId: string,
   name: string,
   repoName: string,
@@ -14,6 +14,16 @@ export async function createProject(
       repoName,
       gitUrl,
       privateRepo,
+    },
+  });
+
+  return res;
+}
+
+export async function getManyProjectByUserId(id: string) {
+  const res = await db.project.findMany({
+    where: {
+      userId: id,
     },
   });
 
